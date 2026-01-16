@@ -1,0 +1,33 @@
+# Dependencies and build output
+node_modules/
+.pnpm-store/
+dist/
+**/dist/
+coverage/
+.nyc_output/
+
+# Environment files and local secrets
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Runtime output
+*.log
+logs/
+*.pid
+*.seed
+*.pid.lock
+
+# Local tooling and editor state
+.cache/
+.turbo/
+.eslintcache
+*.tsbuildinfo
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Local-only project notes
+instruction.txt

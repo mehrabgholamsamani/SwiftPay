@@ -1,0 +1,16 @@
+packages:
+  - apps/api-gateway
+  - apps/identity-service
+  - apps/account-service
+  - apps/ledger-service
+  - apps/payment-service
+  - apps/rail-simulator
+  - apps/reconciliation-service
+  - apps/notification-service
+  - libs/event-contracts
+  - libs/money
+  - libs/correlation
+  - libs/logging
+  - libs/testing
+  - libs/config
+  - libs/errors
