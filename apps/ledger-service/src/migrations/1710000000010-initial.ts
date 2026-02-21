@@ -1,0 +1,9 @@
+import type { MigrationInterface, QueryRunner } from 'typeorm';
+export class InitialLedger1710000000010 implements MigrationInterface {
+  async up(q: QueryRunner): Promise<void> {
+    await q.query(
+      `create table if not exists ledger_accounts(id uuid primary key,owner_id uuid not null,currency varchar(3) not null check(currency in ('EUR','USD','SEK')),status varchar not null default 'ACTIVE',created_at timestamptz not null default now()); create table if not exists ledger_transactions(id uuid primary key,idempotency_key varchar not null unique,request_hash varchar not null,status varchar not null default 'POSTED',reversal_of uuid,created_at timestamptz not null default now()); create table if not exists ledger_entries(id uuid primary key,transaction_id uuid not null references ledger_transactions(id),ledger_account_id uuid not null references ledger_accounts(id),side varchar not null check(side in ('DEBIT','CREDIT')),amount_minor bigint not null check(amount_minor>0),currency varchar(3) not null,created_at timestamptz not null default now()); create table if not exists balance_reservations(id uuid primary key,ledger_account_id uuid not null references ledger_accounts(id),amount_minor bigint not null check(amount_minor>0),currency varchar(3) not null,status varchar not null default 'ACTIVE'); create table if not exists idempotency_records(key varchar primary key,request_hash varchar not null,transaction_id uuid not null); create table if not exists outbox_messages(id uuid primary key,message_type varchar not null,payload jsonb not null,published_at timestamptz,created_at timestamptz not null default now()); create table if not exists inbox_messages(message_id uuid primary key,processed_at timestamptz not null default now()); create index if not exists ledger_entries_account_created_idx on ledger_entries(ledger_account_id,created_at);`,
+    );
+  }
+  async down(): Promise<void> {}
+}
