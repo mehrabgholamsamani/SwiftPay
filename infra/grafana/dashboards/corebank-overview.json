@@ -1,0 +1,22 @@
+{
+  "title": "CoreBank Overview",
+  "schemaVersion": 39,
+  "panels": [
+    { "type": "stat", "title": "Gateway up", "targets": [{ "expr": "corebank_gateway_up" }] },
+    {
+      "type": "stat",
+      "title": "Reconciliation up",
+      "targets": [{ "expr": "corebank_reconciliation_service_up" }]
+    },
+    {
+      "type": "timeseries",
+      "title": "Gateway availability",
+      "targets": [{ "expr": "up{job=\"api-gateway\"}" }]
+    },
+    {
+      "type": "timeseries",
+      "title": "Reconciliation availability",
+      "targets": [{ "expr": "up{job=\"reconciliation-service\"}" }]
+    }
+  ]
+}
