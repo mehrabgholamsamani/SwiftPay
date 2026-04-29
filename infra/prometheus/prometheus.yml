@@ -1,0 +1,20 @@
+global:
+  scrape_interval: 15s
+  scrape_protocols: [PrometheusText0.0.4]
+scrape_configs:
+  - job_name: api-gateway
+    static_configs: [{ targets: ['api-gateway:3000'] }]
+  - job_name: reconciliation-service
+    static_configs: [{ targets: ['reconciliation-service:3006'] }]
+  - job_name: core-services
+    fallback_scrape_protocol: PrometheusText0.0.4
+    static_configs:
+      - targets:
+          [
+            'account-service:3002',
+            'identity-service:3001',
+            'ledger-service:3003',
+            'payment-service:3004',
+            'rail-simulator:3005',
+            'notification-service:3007',
+          ]
