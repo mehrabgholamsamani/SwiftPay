@@ -14,15 +14,15 @@ The result is a deliberately scoped NestJS monorepo that is small enough to insp
 
 ## What it demonstrates
 
-- Separate NestJS services for identity, accounts, ledger, payments, rail simulation, reconciliation, notifications, and the API gateway.
-- One PostgreSQL database per service; no shared TypeORM entities or cross-service reads.
-- An immutable, double-entry ledger using `BIGINT` minor units and decimal-string API values.
-- Reservation-backed payment sagas over Kafka—without distributed database transactions.
-- Transactional outbox and consumer inbox records to target one business effect with at-least-once delivery.
-- Idempotency keys plus request hashes that reject accidental key reuse with a different command.
-- Deterministic rail scenarios for success, retryable failure, rejection, timeout-after-acceptance, duplicate events, and out-of-order events.
-- Reconciliation that finds and auditably resolves discrepancies without touching ledger state.
-- Correlation IDs, structured redacted logs, health/readiness endpoints, Prometheus, Grafana, Tempo, and CI security scanning.
+- **Separate NestJS services** for identity, accounts, ledger, payments, rail simulation, reconciliation, notifications, and the API gateway.
+- **One PostgreSQL database per service**; no shared TypeORM entities or cross-service reads.
+- An **immutable, double-entry ledger** using `BIGINT` minor units and decimal-string API values.
+- **Reservation-backed payment sagas** over Kafka—without distributed database transactions.
+- **Transactional outbox and consumer inbox** records to target one business effect with at-least-once delivery.
+- **Idempotency keys plus request hashes** that reject accidental key reuse with a different command.
+- **Deterministic rail scenarios** for success, retryable failure, rejection, timeout-after-acceptance, duplicate events, and out-of-order events.
+- **Reconciliation** that finds and auditably resolves discrepancies without touching ledger state.
+- **Correlation IDs**, structured redacted logs, health/readiness endpoints, Prometheus, Grafana, Tempo, and CI security scanning.
 
 ## Architecture at a glance
 
