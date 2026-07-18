@@ -17,6 +17,19 @@
       "type": "timeseries",
       "title": "Reconciliation availability",
       "targets": [{ "expr": "up{job=\"reconciliation-service\"}" }]
+    },
+    {
+      "type": "timeseries",
+      "title": "Pending outbox messages",
+      "targets": [{ "expr": "corebank_outbox_pending" }]
+    },
+    {
+      "type": "timeseries",
+      "title": "Dead letters and open discrepancies",
+      "targets": [
+        { "expr": "corebank_dead_letters_total" },
+        { "expr": "corebank_reconciliation_open_discrepancies" }
+      ]
     }
   ]
 }

@@ -1,0 +1,13 @@
+groups:
+  - name: corebank-local
+    rules:
+      - alert: CoreBankServiceDown
+        expr: up{job=~"api-gateway|reconciliation-service|core-services"} == 0
+        for: 2m
+        labels: { severity: warning }
+        annotations: { summary: 'A CoreBank service is unreachable' }
+      - alert: CoreBankDeadLetters
+        expr: corebank_dead_letters_total > 0
+        for: 5m
+        labels: { severity: warning }
+        annotations: { summary: 'CoreBank has dead-lettered messages' }
